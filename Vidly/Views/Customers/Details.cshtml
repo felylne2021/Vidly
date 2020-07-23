@@ -1,0 +1,33 @@
+﻿@model Vidly.Models.Customer
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Model.Name</title>
+</head>
+<body>
+    <div>
+        <h2>@Model.Name</h2>
+
+        <ul>
+            <li>Date of Birth: @Model.Birthdate.Value.ToLongDateString()</li>
+            <li>Membership Type: @Model.MembershipType.Name</li>
+            <li>Membership Duration: @Model.MembershipType.DurationInMonths Months</li>
+            <li>Discount Rate: @Model.MembershipType.DiscountRate%</li>
+            @if (Model.Birthdate.HasValue) {
+                <li>Birthdate: @Model.Birthdate.Value.ToLongDateString()</li>
+            }
+        </ul>
+
+    </div>
+    @using (Html.BeginForm("Edit", "Customers", new { id = Model.Id })){
+        <button type="submit" class="btn btn-primary">Edit Customer</button>
+    }
+</body>
+</html>

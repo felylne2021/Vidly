@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Vidly.Models.Movie>
+
+@{
+    ViewBag.Title = "Movies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="~/Content/datatables.min.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/dataTables.jqueryui.min.css" />
+
+
+<h2>Movies</h2>
+
+<form method="get" action="Movies/New">
+    <button type="submit" class="btn btn-primary">Add Movie</button>
+</form>
+<br />
+@if (!Model.Any()) {
+    <p>We don't have any movies yet.</p>
+}
+else {
+    <table class="table table-bordered table-hover" id="movieTbl">
+        <thead>
+            <tr>
+                <th>Movie</th>
+                <th>Genre</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in Model) {
+                <tr>
+                    <td>@Html.ActionLink(movie.Name, "Details", "Movies", new { id = movie.Id }, null)</td>
+                    <td>@movie.Genre.GenreName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.dataTables.min.js"></script>
+@*<script type="text/javascript" src="~/Scripts/datatables.min.js"></script>*@
+<script>
+    $(function () {
+        console.log("a");
+        $('#movieTbl').DataTable();
+    });
+</script>
