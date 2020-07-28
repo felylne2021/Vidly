@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using Vidly.Models;
 using Vidly.ViewModels;
 
@@ -30,20 +31,7 @@ namespace Vidly.Controllers {
                 return HttpNotFound();
             return View(movie);
         }
-        // GET: Movies/Random
-        public ActionResult Random() {
-            var movie = new Movie() { Name = "Shrek!" };
-            var customers = new List<Customer> {
-                new Customer{Name = "Customer 1"},
-                new Customer{Name = "Customer 2"}
-            };
-
-            var viewModel = new RandomMovieViewModel {
-                Movie = movie,
-                Customers = customers
-            };
-            return View(viewModel);
-        }
+        
 
         [Route("movies/released/{year}/{month:regex(\\d{2}):range(1, 12)}")]
         public ActionResult ByReleasedDate(int year, int month) {
@@ -63,8 +51,8 @@ namespace Vidly.Controllers {
             if (movie == null)
                 return HttpNotFound();
 
-            var viewModel = new MovieFormViewModel {
-                Movie = movie,
+            var viewModel = new MovieFormViewModel(movie) {
+
                 Genres = _context.Genres.ToList()
             };
 
@@ -72,7 +60,15 @@ namespace Vidly.Controllers {
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie) {
+            if (!ModelState.IsValid) {
+                var viewModel = new MovieFormViewModel(movie) {
+                    Genres = _context.Genres.ToList()
+                };
+
+                return View("MovieForm", viewModel);
+            }
             if (movie.Id == 0) {
                 movie.DateAdded = DateTime.Now;
                 _context.Movies.Add(movie);
@@ -87,7 +83,13 @@ namespace Vidly.Controllers {
                 MovInDB.Stock = movie.Stock;
             }
             _context.SaveChanges();
-            return RedirectToAction("Index", "Movies");
+            string message = "SUCCESSFULLY SAVED";
+            return Json(new { Message = message, JsonRequestBehavior.AllowGet });
+        }
+
+        public JsonResult getMovie() {
+            var movies = _context.Movies.Include(m => m.Genre).ToList();
+            return Json(movies, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -7,7 +7,6 @@
 <link rel="stylesheet" type="text/css" href="~/Content/datatables.min.css" />
 <link rel="stylesheet" type="text/css" href="~/Content/dataTables.jqueryui.min.css" />
 
-
 <h2>Movies</h2>
 
 <form method="get" action="Movies/New">
@@ -21,6 +20,7 @@ else {
     <table class="table table-bordered table-hover" id="movieTbl">
         <thead>
             <tr>
+                <th></th>
                 <th>Movie</th>
                 <th>Genre</th>
             </tr>
@@ -28,6 +28,7 @@ else {
         <tbody>
             @foreach (var movie in Model) {
                 <tr>
+                    <td></td>
                     <td>@Html.ActionLink(movie.Name, "Details", "Movies", new { id = movie.Id }, null)</td>
                     <td>@movie.Genre.GenreName</td>
                 </tr>
@@ -35,12 +36,11 @@ else {
         </tbody>
     </table>
 }
-<script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
-<script type="text/javascript" src="~/Scripts/jquery.dataTables.min.js"></script>
-@*<script type="text/javascript" src="~/Scripts/datatables.min.js"></script>*@
+
+<script type="text/javascript" src="~/Scripts/datatables.min.js"></script>
+<script type="text/javascript" src="~/Scripts/vidly-scripts.js"></script>
 <script>
     $(function () {
-        console.log("a");
         $('#movieTbl').DataTable();
     });
 </script>

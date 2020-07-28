@@ -8,7 +8,7 @@ namespace Vidly.Models {
     public class Movie {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Please fill in movie's name")]
         public string Name { get; set; }
 
         public Genre Genre { get; set; }
@@ -22,6 +22,7 @@ namespace Vidly.Models {
         public DateTime DateAdded { get; set; }
 
         [Display(Name = "Number in Stock")]
+        [Range(1,100)]
         public int Stock { get; set; }
     }
 }

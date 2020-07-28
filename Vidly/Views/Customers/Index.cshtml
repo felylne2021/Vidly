@@ -4,30 +4,24 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <h2>Customers</h2>
 
 <form method="get" action="Customers/New">
     <button type="submit" class="btn btn-primary">Add Customer</button>
 </form>
 <br />
-@if (!Model.Any()) {
-    <p>We don't have any customers yet.</p>
-}
-else {
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Customer</th>
-                <th>Membership Type</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var customer in Model) {
-                <tr>
-                    <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null)</td>
-                    <td>@customer.MembershipType.Name</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+<table class="table table-bordered table-hover" id="custTbl">
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Membership Type</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+
+<script type="text/javascript" src="~/Scripts/datatables.min.js"></script>

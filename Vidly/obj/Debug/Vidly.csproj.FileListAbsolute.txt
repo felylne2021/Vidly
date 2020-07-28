@@ -120,3 +120,11 @@ C:\Users\LAPTOP\source\repos\Vidly\Vidly\obj\Debug\Vidly.Migrations.ConnectMovie
 C:\Users\LAPTOP\source\repos\Vidly\Vidly\obj\Debug\Vidly.Migrations.AddGenreToMovie.resources
 C:\Users\LAPTOP\source\repos\Vidly\Vidly\obj\Debug\Vidly.Migrations.PopulateGenres.resources
 C:\Users\LAPTOP\source\repos\Vidly\Vidly\obj\Debug\Vidly.Migrations.AddDatesAndStockToMovies.resources
+C:\Users\LAPTOP\source\repos\Vidly\Vidly\bin\System.Net.Http.Formatting.dll
+C:\Users\LAPTOP\source\repos\Vidly\Vidly\bin\System.Web.Http.dll
+C:\Users\LAPTOP\source\repos\Vidly\Vidly\bin\System.Web.Http.WebHost.dll
+C:\Users\LAPTOP\source\repos\Vidly\Vidly\bin\System.Net.Http.Formatting.xml
+C:\Users\LAPTOP\source\repos\Vidly\Vidly\bin\System.Web.Http.xml
+C:\Users\LAPTOP\source\repos\Vidly\Vidly\bin\System.Web.Http.WebHost.xml
+C:\Users\LAPTOP\source\repos\Vidly\Vidly\bin\AutoMapper.dll
+C:\Users\LAPTOP\source\repos\Vidly\Vidly\bin\AutoMapper.xml

@@ -6,10 +6,16 @@
     <title>@ViewBag.Title - Vidly</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript" src="~/Scripts/vidly-scripts.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/datatables.min.css" />
 
 </head>
 <body>
-    @Html.Partial("_NavBar");
+    @Html.Partial("_NavBar")
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -18,8 +24,6 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
 </body>
 </html>
